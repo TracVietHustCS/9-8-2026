@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>9/8/2026 · Trác Việt</title>
+<meta name="description" content="9/8/2026: truyện dài, cập nhật từng phần.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C2255C'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='24' font-style='italic' fill='white' text-anchor='middle'%3E9/8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9f0ee; --paper:#f8fbfa; --ink:#14262a; --muted:#566a6d; --line:#c3d1ce; --brand:#c2255c; --brand-ink:#ffffff;
+  --ui:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --read:"Newsreader",Georgia,"Times New Roman",serif;
+  --script:"Pinyon Script","Newsreader",Georgia,serif;
+  --fs:20px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1617; --paper:#121e20; --ink:#e3edeb; --muted:#93a8a8; --line:#243536; --brand:#f06595; --brand-ink:#2a0a16; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1617; --paper:#121e20; --ink:#e3edeb; --muted:#93a8a8; --line:#243536; --brand:#f06595; --brand-ink:#2a0a16; color-scheme:dark;
+}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--ui);line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+
+/* progress */
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;background:var(--brand);z-index:55}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .in{max-width:860px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;gap:10px}
+.home{font-family:var(--script);font-size:34px;line-height:1;text-decoration:none;padding-top:4px;white-space:nowrap}
+.top .sp{flex:1}
+.top a.t,.top button{font:inherit;font-size:14px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;
+  padding:5px 13px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.top a.t:hover,.top button:hover{color:var(--ink);border-color:var(--muted)}
+.top .sz{padding:5px 10px;min-width:38px}
+
+/* page card */
+main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:56px clamp(22px,7vw,84px) 52px}
+.page[hidden]{display:none}
+
+/* cover */
+.cover h1{font-family:var(--read);font-weight:500;font-size:clamp(60px,15vw,132px);line-height:.95;letter-spacing:-.04em;margin:0 0 18px}
+.cover .tag{font-family:var(--read);font-style:italic;font-size:clamp(20px,3vw,26px);color:var(--muted);margin:0 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:15px;padding:11px 22px;border-radius:999px;border:1.5px solid var(--brand)}
+.btn.pri{background:var(--brand);color:var(--brand-ink)}
+.btn.pri:hover{filter:brightness(1.08)}
+.btn.sec{color:var(--brand)}
+.btn.sec:hover{background:color-mix(in srgb,var(--brand) 10%,transparent)}
+.cover h2{font-size:18px;font-weight:600;margin:0 0 6px}
+.toc{list-style:none;margin:0;padding:0}
+.toc li{border-top:1px solid var(--line)}
+.toc li:last-child{border-bottom:1px solid var(--line)}
+.toc a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;padding:16px 4px;text-decoration:none}
+.toc a:hover .n{color:var(--brand)}
+.toc .n{font-family:var(--read);font-size:24px;line-height:1.25}
+.toc .d{color:var(--muted);font-size:14px;white-space:nowrap}
+.badge{display:inline-block;font-family:var(--ui);font-size:12px;font-weight:600;padding:1px 9px;border-radius:999px;margin-left:8px;vertical-align:middle;
+  background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand)}
+.badge.dr{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+
+/* reading */
+.crumb{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
+.rd h1{font-family:var(--read);font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.12;letter-spacing:-.02em;margin:0 0 8px}
+.rd .meta{color:var(--muted);font-size:14px;margin:0 0 36px}
+.body{font-family:var(--read);font-size:var(--fs);line-height:1.78;max-width:36em}
+.body p{margin:0 0 1.15em}
+.body h2{font-family:var(--read);font-weight:600;font-size:1.35em;margin:1.8em 0 .6em;line-height:1.3}
+.body blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:3px solid var(--brand);color:var(--muted);font-style:italic}
+.body .brk{height:1.6em;margin:1.4em 0;text-align:center;line-height:1.6em;color:var(--muted);letter-spacing:.9em;padding-left:.9em}
+.body .brk::before{content:"* * *";letter-spacing:.5em}
+.end{margin-top:56px;padding-top:26px;border-top:1px solid var(--line)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pn a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.pn a:hover{border-color:var(--brand)}
+.pn small{display:block;color:var(--muted);font-size:13px}
+.pn b{font-family:var(--read);font-weight:500;font-size:20px;line-height:1.3}
+.pn a.nx{text-align:right;grid-column:2}
+.pn a.pv{grid-column:1}
+.toc-link{display:inline-block;margin-top:18px;font-size:14px;color:var(--muted)}
+.soon{color:var(--muted);font-style:italic;font-family:var(--read);font-size:19px;margin:30px 0 0}
+
+footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between}
+
+@media (max-width:560px){
+  main{padding:14px 0 56px}
+  .page{border-radius:0;border-left:0;border-right:0;padding-top:36px}
+  .pn{grid-template-columns:1fr}
+  .pn a.nx,.pn a.pv{grid-column:1;text-align:left}
+  footer{padding:0 20px 36px}
+  .top .hide-s{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="in">
+    <a class="home" href="https://tracviethustcs.github.io/" aria-label="Về trang chủ Trác Việt">Trác Việt</a>
+    <span class="sp"></span>
+    <a class="t hide-s" id="tocbtn" href="#" hidden>Mục lục</a>
+    <button class="sz" id="smaller" type="button" aria-label="Giảm cỡ chữ">A−</button>
+    <button class="sz" id="bigger" type="button" aria-label="Tăng cỡ chữ">A+</button>
+    <button id="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối">Sáng/Tối</button>
+  </div>
+</header>
+
+<main>
+  <article class="page cover" id="cover" hidden>
+    <h1 id="c-title"></h1>
+    <p class="tag" id="c-tag"></p>
+    <div class="btns" id="c-btns"></div>
+    <h2>Mục lục</h2>
+    <ol class="toc" id="c-toc"></ol>
+  </article>
+
+  <article class="page rd" id="reader" hidden>
+    <p class="crumb"><a href="#" id="r-back">9/8/2026</a></p>
+    <h1 id="r-title"></h1>
+    <p class="meta" id="r-meta"></p>
+    <div class="body" id="r-body"></div>
+    <p class="soon" id="r-soon" hidden>Phần tiếp theo đang được viết.</p>
+    <div class="end">
+      <div class="pn" id="r-pn"></div>
+      <a class="toc-link" href="#">Về mục lục</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <span id="f-upd"></span>
+  <span>© <span id="yr"></span> Trác Việt</span>
+</footer>
+
+<script src="parts.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = d => { const [y,m,dd] = d.split("-"); return `${dd}/${m}/${y}`; };
+const parts = STORY.parts;
+const byId = id => parts.findIndex(p => p.id === id);
+
+/* mini-markdown: đoạn cách nhau dòng trống, *nghiêng*, **đậm**, ## tiêu đề, > trích dẫn, *** ngắt cảnh */
+const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*(.+?)\*/g,"<em>$1</em>");
+function renderBody(body){
+  return body.trim().split(/\n{2,}/).map(b => {
+    b = b.trim();
+    if (/^(\*\s*\*\s*\*|---)$/.test(b)) return '<div class="brk" role="separator"></div>';
+    if (b.startsWith("## ")) return "<h2>" + inline(b.slice(3)) + "</h2>";
+    if (b.startsWith("> ")) return "<blockquote>" + b.split("\n").map(l => inline(l.replace(/^>\s?/,""))).join("<br>") + "</blockquote>";
+    return "<p>" + b.split("\n").map(inline).join("<br>") + "</p>";
+  }).join("");
+}
+
+/* last read */
+const LS = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+
+function badge(p, i){
+  let s = "";
+  if (p.draft) s += '<span class="badge dr">Bản nháp</span>';
+  else if (i === parts.length - 1 && parts.length > 1) s += '<span class="badge">Mới nhất</span>';
+  return s;
+}
+
+function showCover(){
+  $("#reader").hidden = true; $("#cover").hidden = false; $("#tocbtn").hidden = true;
+  document.title = STORY.title + " · Trác Việt";
+  $("#c-title").textContent = STORY.title;
+  $("#c-tag").textContent = STORY.tagline;
+  const last = LS.get("s98-last"), li = last ? byId(last) : -1;
+  let b = `<a class="btn pri" href="#${esc(parts[0].id)}">Bắt đầu đọc</a>`;
+  if (li > 0) b = `<a class="btn pri" href="#${esc(parts[li].id)}">Tiếp tục: ${esc(parts[li].title)}</a><a class="btn sec" href="#${esc(parts[0].id)}">Đọc từ đầu</a>`;
+  else if (li === 0 && parts.length > 1) b = `<a class="btn pri" href="#${esc(parts[0].id)}">Tiếp tục đọc</a><a class="btn sec" href="#${esc(parts[parts.length-1].id)}">Đến phần mới nhất</a>`;
+  $("#c-btns").innerHTML = b;
+  $("#c-toc").innerHTML = parts.map((p,i) =>
+    `<li><a href="#${esc(p.id)}"><span class="n">${esc(p.title)}${p.subtitle?": "+esc(p.subtitle):""}${badge(p,i)}</span><span class="d">${fmt(p.date)}</span></a></li>`).join("");
+  window.scrollTo(0,0); progress();
+}
+
+function showPart(i){
+  const p = parts[i];
+  $("#cover").hidden = true; $("#reader").hidden = false; $("#tocbtn").hidden = false;
+  document.title = `${p.title} · ${STORY.title} · Trác Việt`;
+  $("#r-title").textContent = p.title + (p.subtitle ? ": " + p.subtitle : "");
+  $("#r-meta").innerHTML = `${fmt(p.date)}${p.draft ? ' <span class="badge dr">Bản nháp</span>' : ""}`;
+  $("#r-body").innerHTML = renderBody(p.body);
+  $("#r-soon").hidden = i !== parts.length - 1;
+  const prev = parts[i-1], next = parts[i+1];
+  $("#r-pn").innerHTML =
+    (prev ? `<a class="pv" href="#${esc(prev.id)}"><small>Phần trước</small><b>${esc(prev.title)}</b></a>` : "") +
+    (next ? `<a class="nx" href="#${esc(next.id)}"><small>Phần sau</small><b>${esc(next.title)}</b></a>` : "");
+  LS.set("s98-last", p.id);
+  window.scrollTo(0,0); progress();
+}
+
+function route(){
+  const id = location.hash.slice(1), i = byId(id);
+  if (i >= 0) showPart(i); else showCover();
+}
+addEventListener("hashchange", route);
+
+/* header link "Mục lục" + breadcrumb: về cover mà không để lại hash */
+function toCover(e){ e.preventDefault(); history.pushState(null,"",location.pathname+location.search); route(); }
+$("#tocbtn").addEventListener("click", toCover);
+$("#r-back").addEventListener("click", toCover);
+document.querySelector(".toc-link").addEventListener("click", toCover);
+
+/* progress bar */
+function progress(){
+  const h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+  $("#bar").style.width = (max > 0 && !$("#reader").hidden ? Math.min(100, h.scrollTop / max * 100) : 0) + "%";
+}
+addEventListener("scroll", progress, {passive:true});
+addEventListener("resize", progress);
+
+/* font size */
+let fs = parseInt(LS.get("s98-fs") || "20", 10);
+function applyFs(){ document.documentElement.style.setProperty("--fs", fs + "px"); LS.set("s98-fs", fs); progress(); }
+$("#smaller").addEventListener("click", () => { fs = Math.max(16, fs - 1); applyFs(); });
+$("#bigger").addEventListener("click", () => { fs = Math.min(28, fs + 1); applyFs(); });
+applyFs();
+
+/* theme */
+const root = document.documentElement;
+const th = LS.get("s98-theme"); if (th) root.dataset.theme = th;
+$("#theme").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark"; LS.set("s98-theme", root.dataset.theme);
+});
+
+/* footer */
+const latest = parts.map(p => p.date).sort().pop();
+$("#f-upd").textContent = "Cập nhật lần cuối: " + fmt(latest);
+$("#yr").textContent = new Date().getFullYear();
+
+route();
+</script>
+</body>
+</html>
