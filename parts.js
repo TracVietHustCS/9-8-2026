@@ -19,10 +19,7 @@ const STORY = {
       id: "p1",
       title: "Phần 1",
       date: "2026-10-30",
-      draft: true,
-      body: `Phần đầu tiên đang được viết.
-
-Khi sẵn sàng, nó sẽ xuất hiện ở đây. Trang này được cập nhật từng phần, quay lại sau nhé.`
+      body: `Chúc em hạnh phúc.`
     }
   ]
 };
