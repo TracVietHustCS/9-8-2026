@@ -1,6 +1,6 @@
 # 9/8/2026
 
-Truyện dài, cập nhật từng phần. Đọc tại https://tracviethustcs.github.io/9-8-2026/
+Tuyệt Tình Truyện. Đọc tại https://tracviethustcs.github.io/9-8-2026/
 
 ## Thêm một phần mới
 

@@ -13,7 +13,7 @@
 */
 const STORY = {
   title: "9/8/2026",
-  tagline: "Truyện dài, cập nhật từng phần.",
+  tagline: "Tuyệt Tình Truyện",
   parts: [
     {
       id: "p1",
