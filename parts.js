@@ -70,6 +70,112 @@ Ngày chuyến đi với trường kết thúc, mình gọi điện, nhắn tin 
 Lúc ấy mình không hiểu chuyện gì đang xảy ra. Mình vẫn gọi, vẫn nhắn, nhưng những cuộc gọi và tin nhắn đó dường như không còn quan trọng với cô ấy nữa. Cuối cùng cô ấy nói rằng cô ấy hết yêu, cô ấy chán, rồi đưa ra rất nhiều lý do để dừng hẳn mối quan hệ này.
 
 Còn mình lúc đó chỉ nghĩ đơn giản rằng: có lẽ cô ấy chỉ muốn tập trung vào bản thân, muốn bước tiếp một mình. Mình không biết rằng đằng sau sự im lặng và những lời nói hời hợt ấy, đã có một người khác xuất hiện.`
+    },
+    {
+      id: "p5",
+      title: "Phần 5",
+      date: "2026-11-01",
+      body: `Lúc đó mọi thứ nặng nề cứ cùng lúc dồn lên người mình. Vừa đi học, vừa đi làm, vừa phải cố gắng giữ cho bản thân không sụp xuống sau cảm giác mình bị bỏ lại. Đó cũng là lần đầu tiên mình thử hút thuốc. Không phải vì mình thích, cũng chẳng phải vì muốn tỏ ra gì cả. Mình chỉ coi nó như một thứ an thần tạm thời, một cách để đầu óc mình im đi một chút.
+
+Mọi chuyện đáng lẽ cứ kết thúc trong im lặng như vậy thôi, cho đến khi cô ấy có một kỳ nghỉ và về quê. Mình hỏi cô ấy người con trai kia là ai. Mình cũng hỏi tại sao ngày hôm đó mình gọi rất nhiều nhưng cô ấy không nghe. Câu trả lời của cô ấy là cô ấy chỉ muốn thử rời đi để xem mình sẽ phản ứng như thế nào. Còn người con trai kia, cô ấy nói chỉ là một người bạn.
+
+Mình đã tin.
+
+Có lẽ vì lúc đó mình quá yếu lòng nên mình muốn tin rằng mọi chuyện không đi xa đến mức mình đang nghĩ. Thậm chí khi cô ấy nói muốn đi xem Odyssey ở rạp IMAX hay gì đó, mình lập tức chuyển ra tìm một phòng trọ riêng (lúc đó mình cũng đã có đồng lương đầu tiên), chỉ nghĩ đơn giản rằng hai đứa sẽ có một nơi để nghỉ ngơi và ở cạnh nhau.
+
+Mình cứ tưởng cô ấy thực sự xuống để gặp mình.
+
+Nhưng hóa ra cô ấy chỉ tiện đường xuống trường đại học để đi biển với đoàn. Ngày đầu tiên cô ấy xuống, cô ấy vẫn gọi cho mình, vẫn nhắn tin với mình. Có lúc cô ấy còn không nỡ để mình tắt cuộc gọi, cứ muốn để đó để mình nói chuyện với cô ấy suốt cả trưa chiều ngày hôm đó.
+
+Nhưng đến tối, mọi thứ lại trở về như cũ.
+
+Mình không hiểu tại sao cả tối hôm đó mình không thể gọi cho cô ấy. Đến tận đêm muộn, cô ấy mới hớt hải chạy về và nói điện thoại hết pin. Rồi sau đó, những ngày tiếp theo, gần như tất cả cuộc gọi và tin nhắn của mình đều bị bỏ qua. SMS, điện thoại, Instagram, TikTok, Zalo... mình gọi đến mức có lẽ phải gần 60 cuộc trong khoảng thời gian đó. Nhưng đến đêm, cô ấy vẫn có thể trả lời mình, vẫn nghe những cuộc gọi FaceTime của mình.
+
+Sau đó cô ấy lại đi biển với đoàn trong trường. Và một lần nữa, mọi cuộc gọi, mọi tin nhắn của mình đều bị bỏ qua.
+
+Mình không hiểu chuyện gì đang xảy ra. Mình đau đến mức khóc rất nhiều, hút hết điếu này đến điếu khác, nhưng vẫn không thể tìm được một lý do đủ hợp lý cho tất cả những sự lạnh nhạt đó.
+
+Cho đến một đêm cuối tuần vào tháng 8.`
+    },
+    {
+      id: "p6",
+      title: "Phần 6",
+      date: "2026-11-01",
+      body: `Đêm đó mình thực sự không chịu nổi nữa. Mọi sự phũ phàng mình nhận được đều không có một lời giải thích nào khiến mình chấp nhận được. Và ngay trong đêm hôm đó, mình bắt xe ghép đi tìm cô ấy.
+
+Sáng hôm đó, mình đã nhìn thấy thứ mà có lẽ cả đời mình cũng không muốn nhìn thấy.
+
+Mình đứng trước cửa phòng và gõ cửa. Nhưng cô ấy nhất quyết không mở. Cô ấy tìm đủ mọi lý do để mình rời khỏi khu trọ: nào là muốn ra ngoài uống nước, nào là muốn mình đi ra chỗ khác, rồi khi mình nói không có xe thì cô ấy còn đòi bắt Grab cho mình đi. Mình vẫn không chịu đi. Cuối cùng cô ấy thậm chí còn dọa sẽ gọi chủ nhà để đuổi mình ra khỏi đó.
+
+Ừ thì...
+
+Lúc đó chắc đến cả trời có sập xuống, mình vẫn sẽ đứng ở đó.
+
+Bởi vì mình biết bên trong cánh cửa ấy có thứ gì đó không ổn.
+
+Nhưng mình vẫn tin cô ấy. Tin đến tận giây phút cuối cùng, ngay trước khi cánh cửa đó mở ra.
+
+Và rồi cánh cửa mở.
+
+Bên trong, ngoài cô ấy ra, còn có một người con trai khác.
+
+Chính là người mà cô ấy đã follow trước đó. Chính là người mà cô ấy từng nói với mình rằng chỉ là một người bạn.
+
+Lúc đó mình thực sự không chịu nổi nữa.
+
+Mình đã khóc ngay trước mặt hai người họ. Mọi thứ trong đầu mình như sụp xuống cùng một lúc. Nhưng điều đau nhất không phải là người con trai đó.
+
+Mà là việc nhát dao đau nhất lại đến từ chính người mà mình vẫn còn cố tin.
+
+Cô ấy giải thích rất nhiều. Và ở thời điểm mình yếu lòng nhất, mình vẫn cố tìm một lý do để tin cô ấy. Cô ấy nói đêm hôm đó bị đau bụng kinh, nên người kia chỉ đến để chăm sóc cô ấy.`
+    },
+    {
+      id: "p7",
+      title: "Phần 7",
+      date: "2026-11-01",
+      body: `Mình đã từng muốn tin câu chuyện đó.
+
+Nhưng có lẽ ông trời không muốn mình tiếp tục tự lừa dối bản thân để sống tiếp như vậy.
+
+Sau đó, câu chuyện cô ấy kể bắt đầu xuất hiện ngày càng nhiều chi tiết mâu thuẫn. Những mảnh chuyện rời rạc, chắp vá, không khớp với nhau. Càng giải thích, mọi thứ lại càng trở nên khó tin. Đến một lúc, mình không còn cách nào để tiếp tục tin vào những lời nói dối đó nữa.
+
+Và rồi mình hiểu ra.
+
+Những buổi tối cô ấy nói mình không thể gọi được. Những lần cô ấy không nghe máy. Những khoảng thời gian cô ấy biến mất. Những lời giải thích trước đây...
+
+Hóa ra rất nhiều trong số đó đều liên quan đến người con trai kia.
+
+Nhưng bạn biết điều đau đớn nhất khi bị phản bội là gì không?
+
+Là khi bạn nhìn thấy người mình yêu tiếp tục ở bên một người khác, nhưng bản thân lại chỉ có thể đứng đó nhìn.
+
+Buổi trưa hôm đó, chỉ cần một cuộc gọi của người kia, cô ấy có thể bỏ mình lại ở quán ăn. Mình tự đi bộ ra bến xe, ngồi một mình ở đó, lủi thủi chờ đến khi có xe tới đón.
+
+Khoảng thời gian chờ đợi đó, và cả chuyến xe trở về một mình hôm ấy, có lẽ là một trong những khoảng thời gian nặng nề nhất mình từng trải qua.
+
+Và điều trớ trêu là đúng trong khoảng thời gian đó, công ty cũng đang xem xét để mình được lên chính thức. Mình vẫn đang phải thi giữa kỳ hè, vẫn phải học, vẫn phải làm việc, vẫn phải cố gắng chứng minh rằng mình đủ khả năng để tiếp tục công việc đó.
+
+Hàng nghìn thứ cùng lúc đập vào đầu một người đang gần như tê liệt.
+
+Mình vẫn phải đứng dậy.
+
+Vẫn phải đi học.
+
+Vẫn phải đi làm.
+
+Vẫn phải hoàn thành mọi thứ như thể chẳng có chuyện gì xảy ra.
+
+Có những lúc mình thực sự muốn buông bỏ tất cả, chỉ để cơ thể này được nghỉ ngơi một chút.
+
+Đến tận lúc mình viết những dòng này, mình vẫn không biết mình đã mất bao nhiêu đêm mất ngủ, đã hút bao nhiêu bao thuốc, đã khóc bao nhiêu lần trước mặt những người anh em của mình.
+
+Trong khi mình gần như sống trong địa ngục của chính mình, cô ấy vẫn đăng ảnh, vẫn quay TikTok, vẫn tiếp tục cuộc sống của cô ấy như thể chẳng có chuyện gì xảy ra.
+
+Và mình cứ mãi không hiểu được một điều.
+
+Tại sao sau tất cả những chuyện đó, người đau đớn đến mức không thể làm được gì vẫn là mình?
+
+Còn cô ấy và người kia... vẫn có thể tiếp tục vui vẻ bên nhau.`
     }
   ]
 };
