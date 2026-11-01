@@ -50,6 +50,26 @@ Nhìn lại thì có lẽ nếu lúc đó mình đủ dứt khoát, rất nhiề
 Có một cảm giác mà đến tận bây giờ mình vẫn nhớ: khi mình đã một mình đi dưới mưa đến lúc trời nắng trở lại, mình cũng chẳng còn muốn cùng ai bước đi nữa. Mình đã từng rất cần một người ở bên, nhưng đến khi người đó quay lại thì mình lại không còn biết phải trở về như thế nào.
 
 Và đáng lẽ mọi chuyện nên kết thúc ở đó. Hai đứa nên dừng lại, mỗi người bước tiếp cuộc sống của mình. Nhưng mình đã không làm được. Vẫn còn tình cảm, vẫn quan tâm, vẫn ở đó, nhưng lại không thể trở thành người yêu của nhau một lần nữa. Lúc ấy mình không biết rằng chính sự không dứt khoát này sẽ trở thành thứ khiến mình đau nhất về sau. Và có lẽ, những chuyện thực sự khó khăn của mùa hè đó... cũng bắt đầu từ đây.`
+    },
+    {
+      id: "p4",
+      title: "Phần 4",
+      date: "2026-11-01",
+      body: `Trong khoảng thời gian đó, mình thực sự rất giận cô ấy. Nhưng dù giận đến đâu, mình vẫn không nỡ buông tay. Hai đứa lúc ấy giống như người yêu, nhưng lại chẳng còn chính thức là người yêu của nhau. Vẫn quan tâm, vẫn gọi điện, nhắn tin cho nhau, vẫn hỏi han nhau mỗi ngày. Mình cũng đã nhiều lần lên trọ cô ấy chơi, rồi cô ấy cũng xuống Hà Nội để đi chơi với mình. Hai đứa đi ăn đồ Âu, đồ Nhật, đi chơi với nhau đủ thứ. Những lúc ở cạnh nhau thực sự vẫn rất vui, đến mức nhiều khi mình lại tự hỏi: nếu vẫn còn vui như vậy thì tại sao hai đứa lại không thể quay lại với nhau?
+
+Thời gian đó mình vẫn chỉ là một thằng lông bông, chưa kiếm ra tiền, cũng chưa thực sự có cảm giác mình đã đủ trưởng thành để lo cho một ai đó. Có một lần trong một cuộc điện thoại, cô ấy nói rằng cô ấy sẽ đợi mình. Đợi đến khi mình đủ lớn, đủ chững chạc, có thể lo được cho cô ấy và có thể thực sự đưa cô ấy về gặp bố mẹ.
+
+Đó cũng là một áp lực rất lớn đối với mình. Mẹ mình không phản đối chuyện hai đứa đến với nhau nhưng có một lý do rất khó nói mà đáng nhẽ ra khi biết được mọi chuyện nên kết thúc từ khi đó, nhưng mẹ từng hỏi mình rằng liệu mình có thực sự yêu cô ấy rất nhiều không, có thực sự nghiêm túc không, và sau này có thể lo được cho mọi chuyện có khả năng xảy ra khi đi với cô ấy không. Chỉ khi mình chứng minh được những điều đó thì mẹ mới cảm thấy yên tâm. Vì vậy mình luôn nghĩ rằng bản thân cần phải cố gắng hơn nữa, phải trưởng thành hơn nữa.
+
+Rồi thời gian cứ thế trôi. Đến khoảng tháng 7, tháng 8, cũng đã gần một tháng kể từ lần cuối hai đứa đi chơi với nhau ở Hà Nội. Lúc đó ở trường cô ấy có một chương trình mà mình hiểu đơn giản là một nhóm sinh viên đi cùng giảng viên vào vùng sâu vùng xa để khám chữa bệnh. Còn mình thì cũng vừa bắt đầu bước vào một vị trí gần như chính thức sau thời gian intern. Dự án mới, workload rất nặng, cộng thêm việc phải cân bằng với các môn trên trường khiến mình gần như không còn thời gian.
+
+Mình không thể ngờ rằng chính trong khoảng thời gian đó, cô ấy đã gặp một người khác.
+
+Ngày chuyến đi với trường kết thúc, mình gọi điện, nhắn tin cho cô ấy rất rất nhiều. Nhưng gần như không có bất kỳ phản hồi nào. Sau đó cũng chỉ là vài câu trả lời rất hời hợt. Mình bắt đầu để ý thấy cả tài khoản Instagram chính lẫn tài khoản phụ của cô ấy đều follow một người con trai khác.
+
+Lúc ấy mình không hiểu chuyện gì đang xảy ra. Mình vẫn gọi, vẫn nhắn, nhưng những cuộc gọi và tin nhắn đó dường như không còn quan trọng với cô ấy nữa. Cuối cùng cô ấy nói rằng cô ấy hết yêu, cô ấy chán, rồi đưa ra rất nhiều lý do để dừng hẳn mối quan hệ này.
+
+Còn mình lúc đó chỉ nghĩ đơn giản rằng: có lẽ cô ấy chỉ muốn tập trung vào bản thân, muốn bước tiếp một mình. Mình không biết rằng đằng sau sự im lặng và những lời nói hời hợt ấy, đã có một người khác xuất hiện.`
     }
   ]
 };
