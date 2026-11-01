@@ -153,7 +153,11 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const fmt = d => { const [y,m,dd] = d.split("-"); return `${dd}/${m}/${y}`; };
+const fmt = d => {
+  if (!d) return "";
+  const p = d.split(/[-/]/);
+  return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : d;
+};
 const parts = STORY.parts;
 const byId = id => parts.findIndex(p => p.id === id);
 
