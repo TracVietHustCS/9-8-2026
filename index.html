@@ -98,6 +98,29 @@ main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
 
 footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between}
 
+
+/* lượt xem và bình luận (chỉ hiện khi config.js đã cấu hình backend) */
+.vw{color:var(--muted);font-size:14px}
+.toc .d .vw{display:block;text-align:right;font-size:12.5px}
+.tot{margin:-18px 0 28px;color:var(--muted);font-size:14px}
+.tot:empty{display:none}
+.cm{margin-top:56px;padding-top:26px;border-top:1px solid var(--line)}
+.cm h2{font-family:var(--ui);font-size:18px;font-weight:600;margin:0 0 14px}
+.cm-list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:12px}
+.cm-item{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:color-mix(in srgb,var(--paper) 70%,var(--bg))}
+.cm-item .who{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.cm-item .who b{color:var(--ink);font-weight:600}
+.cm-item p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--ui);font-size:15.5px;line-height:1.6}
+.cm-empty{color:var(--muted);font-size:15px;margin:0 0 20px}
+.cm form{display:grid;gap:10px}
+.cm input[type=text],.cm textarea{font:inherit;font-size:15.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.cm textarea{min-height:96px;resize:vertical}
+.cm .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cm .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+.cm .note,.cm .msg,.cm .cnt{font-size:13.5px;color:var(--muted)}
+.cm .msg.err{color:var(--brand)}
+.cm button[type=submit]{font:inherit;font-weight:600;font-size:15px;padding:10px 22px;border-radius:999px;border:1.5px solid var(--brand);background:var(--brand);color:var(--brand-ink);cursor:pointer}
+.cm button[type=submit]:disabled{opacity:.6;cursor:default}
 @media (max-width:560px){
   main{padding:14px 0 56px}
   .page{border-radius:0;border-left:0;border-right:0;padding-top:36px}
@@ -127,6 +150,7 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
   <article class="page cover" id="cover" hidden>
     <h1 id="c-title"></h1>
     <p class="tag" id="c-tag"></p>
+    <p class="tot" id="c-total" aria-live="polite"></p>
     <div class="btns" id="c-btns"></div>
     <h2>Mục lục</h2>
     <ol class="toc" id="c-toc"></ol>
@@ -138,6 +162,22 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
     <p class="meta" id="r-meta"></p>
     <div class="body" id="r-body"></div>
     <p class="soon" id="r-soon" hidden>Phần tiếp theo đang được viết.</p>
+    <section class="cm" id="cm" hidden aria-labelledby="cm-h">
+      <h2 id="cm-h">Bình luận<span id="cm-count"></span></h2>
+      <ul class="cm-list" id="cm-list"></ul>
+      <p class="cm-empty" id="cm-empty" hidden>Chưa có bình luận nào. Bạn viết dòng đầu tiên nhé.</p>
+      <form id="cm-form" autocomplete="off">
+        <label class="hp" aria-hidden="true">Đừng điền ô này <input type="text" id="cm-hp" tabindex="-1" autocomplete="off"></label>
+        <input type="text" id="cm-name" maxlength="40" placeholder="Tên của bạn (không bắt buộc)" aria-label="Tên của bạn">
+        <textarea id="cm-body" maxlength="1000" placeholder="Viết bình luận..." aria-label="Nội dung bình luận" required></textarea>
+        <div class="row">
+          <span class="cnt"><span id="cm-n">0</span>/1000</span>
+          <button type="submit">Đăng bình luận</button>
+        </div>
+        <p class="note">Không cần đăng nhập. Bình luận hiển thị công khai kèm tên bạn điền.</p>
+        <p class="msg" id="cm-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
     <div class="end">
       <div class="pn" id="r-pn"></div>
       <a class="toc-link" href="#">Về mục lục</a>
@@ -151,6 +191,7 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
 </footer>
 
 <script src="parts.js"></script>
+<script src="config.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -198,8 +239,9 @@ function showCover(){
   else if (li === 0 && parts.length > 1) b = `<a class="btn pri" href="#${esc(parts[0].id)}">Tiếp tục đọc</a><a class="btn sec" href="#${esc(parts[parts.length-1].id)}">Đến phần mới nhất</a>`;
   $("#c-btns").innerHTML = b;
   $("#c-toc").innerHTML = parts.map((p,i) =>
-    `<li><a href="#${esc(p.id)}"><span class="n">${esc(p.title)}${p.subtitle?": "+esc(p.subtitle):""}${badge(p,i)}</span><span class="d">${fmt(p.date)}</span></a></li>`).join("");
+    `<li><a href="#${esc(p.id)}"><span class="n">${esc(p.title)}${p.subtitle?": "+esc(p.subtitle):""}${badge(p,i)}</span><span class="d">${fmt(p.date)}<span class="vw" data-v="${esc(p.id)}"></span></span></a></li>`).join("");
   window.scrollTo(0,0); progress();
+  onCoverShown();
 }
 
 function showPart(i){
@@ -207,7 +249,7 @@ function showPart(i){
   $("#cover").hidden = true; $("#reader").hidden = false; $("#tocbtn").hidden = false;
   document.title = `${p.title} · ${STORY.title} · Trác Việt`;
   $("#r-title").textContent = p.title + (p.subtitle ? ": " + p.subtitle : "");
-  $("#r-meta").innerHTML = `${fmt(p.date)}${p.draft ? ' <span class="badge dr">Bản nháp</span>' : ""}`;
+  $("#r-meta").innerHTML = `${fmt(p.date)}${p.draft ? ' <span class="badge dr">Bản nháp</span>' : ""}<span class="vw" id="r-views"></span>`;
   $("#r-body").innerHTML = renderBody(p.body);
   $("#r-soon").hidden = i !== parts.length - 1;
   const prev = parts[i-1], next = parts[i+1];
@@ -216,6 +258,7 @@ function showPart(i){
     (next ? `<a class="nx" href="#${esc(next.id)}"><small>Phần sau</small><b>${esc(next.title)}</b></a>` : "");
   LS.set("s98-last", p.id);
   window.scrollTo(0,0); progress();
+  onPartShown(p);
 }
 
 function route(){
@@ -257,6 +300,126 @@ $("#theme").addEventListener("click", () => {
 const latest = parts.map(p => p.date).sort().pop();
 $("#f-upd").textContent = "Cập nhật lần cuối: " + fmt(latest);
 $("#yr").textContent = new Date().getFullYear();
+
+/* ===== Lượt xem và bình luận (cần backend, xem backend/README.md) ===== */
+const BE = (window.STORY_BACKEND && STORY_BACKEND.url && STORY_BACKEND.key) ? STORY_BACKEND : null;
+const api = {
+  base: BE ? BE.url.replace(/\/+$/, "") + "/rest/v1" : "",
+  headers(extra){
+    const h = { apikey: BE.key, "Content-Type": "application/json" };
+    if (BE.key.startsWith("eyJ")) h.Authorization = "Bearer " + BE.key;   // khoá kiểu JWT cũ; khoá "publishable" mới chỉ cần apikey
+    return Object.assign(h, extra || {});
+  },
+  async get(path){
+    const r = await fetch(this.base + path, { headers: this.headers() });
+    if (!r.ok) throw new Error("GET " + r.status);
+    return r.json();
+  },
+  async post(path, body, extra){
+    const r = await fetch(this.base + path, { method: "POST", headers: this.headers(extra), body: JSON.stringify(body) });
+    if (!r.ok) throw new Error("POST " + r.status);
+    return r.status === 204 ? null : r.json();
+  }
+};
+const nf = n => Number(n).toLocaleString("vi-VN");
+const VIEW_TTL = 12 * 3600 * 1000;      // mỗi trình duyệt chỉ tính 1 lượt xem cho mỗi phần trong 12 giờ
+
+async function showViews(id){
+  const el = $("#r-views"); if (!el) return;
+  try {
+    let n;
+    const k = "s98-v-" + id, last = +LS.get(k) || 0;
+    if (Date.now() - last > VIEW_TTL) {
+      n = await api.post("/rpc/increment_view", { p_part: id });
+      LS.set(k, String(Date.now()));
+    } else {
+      const r = await api.get(`/views?part_id=eq.${encodeURIComponent(id)}&select=n`);
+      n = r[0] ? r[0].n : 0;
+    }
+    if (location.hash.slice(1) === id && n) el.textContent = ` · ${nf(n)} lượt xem`;
+  } catch (e) { /* im lặng: lỗi backend không được làm hỏng việc đọc */ }
+}
+
+async function onCoverShown(){
+  if (!BE) return;
+  try {
+    const rows = await api.get("/views?select=part_id,n");
+    const m = Object.fromEntries(rows.map(r => [r.part_id, Number(r.n)]));
+    let total = 0;
+    document.querySelectorAll("[data-v]").forEach(el => {
+      const n = m[el.dataset.v] || 0; total += n;
+      el.textContent = n ? nf(n) + " lượt xem" : "";
+    });
+    $("#c-total").textContent = total ? nf(total) + " lượt xem" : "";
+  } catch (e) {}
+}
+
+function ago(iso){
+  const t = new Date(iso), s = (Date.now() - t.getTime()) / 1000;
+  if (s < 60) return "vừa xong";
+  if (s < 3600) return Math.floor(s / 60) + " phút trước";
+  if (s < 86400) return Math.floor(s / 3600) + " giờ trước";
+  if (s < 86400 * 7) return Math.floor(s / 86400) + " ngày trước";
+  const p = n => String(n).padStart(2, "0");
+  return `${p(t.getDate())}/${p(t.getMonth() + 1)}/${t.getFullYear()}`;
+}
+function cmItem(c){                       // luôn dùng textContent: bình luận không bao giờ được chèn HTML
+  const li = document.createElement("li"); li.className = "cm-item";
+  const who = document.createElement("div"); who.className = "who";
+  const b = document.createElement("b"); b.textContent = c.name;
+  const t = document.createElement("time"); t.dateTime = c.created_at; t.textContent = ago(c.created_at);
+  who.append(b, t);
+  const p = document.createElement("p"); p.textContent = c.body;
+  li.append(who, p);
+  return li;
+}
+let cmFor = null, cmN = 0;
+function setCount(){ $("#cm-count").textContent = cmN ? ` (${cmN})` : ""; $("#cm-empty").hidden = cmN > 0; }
+async function renderCommentsFor(id){
+  cmFor = id; cmN = 0;
+  $("#cm").hidden = false;
+  $("#cm-list").innerHTML = ""; $("#cm-msg").textContent = "";
+  $("#cm-empty").textContent = "Chưa có bình luận nào. Bạn viết dòng đầu tiên nhé."; $("#cm-empty").hidden = true;
+  try {
+    const rows = await api.get(`/comments?part_id=eq.${encodeURIComponent(id)}&select=id,name,body,created_at&order=created_at.asc&limit=300`);
+    if (cmFor !== id) return;
+    rows.forEach(c => $("#cm-list").appendChild(cmItem(c)));
+    cmN = rows.length; setCount();
+  } catch (e) {
+    $("#cm-empty").textContent = "Chưa tải được bình luận."; $("#cm-empty").hidden = false;
+  }
+}
+function onPartShown(p){
+  if (!BE) return;
+  showViews(p.id);
+  renderCommentsFor(p.id);
+}
+
+if (BE) {
+  $("#cm-name").value = LS.get("s98-cm-name") || "";
+  $("#cm-body").addEventListener("input", e => { $("#cm-n").textContent = e.target.value.length; });
+  $("#cm-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const msg = $("#cm-msg"), btn = e.target.querySelector("button[type=submit]");
+    const say = (t, err) => { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); };
+    const name = ($("#cm-name").value || "").trim().slice(0, 40) || "Ẩn danh";
+    const body = ($("#cm-body").value || "").trim();
+    if ($("#cm-hp").value) { say("Đã đăng. Cảm ơn bạn!"); $("#cm-body").value = ""; return; }   // ô bẫy bot: giả vờ thành công
+    if (!body) return say("Bạn chưa viết gì cả.", true);
+    if (body.length > 1000) return say("Bình luận dài quá (tối đa 1000 ký tự).", true);
+    if (Date.now() - (+LS.get("s98-cm-last") || 0) < 20000) return say("Chờ vài giây rồi gửi tiếp nhé.", true);
+    btn.disabled = true; say("Đang gửi…");
+    try {
+      const res = await api.post("/comments", { part_id: cmFor, name, body }, { Prefer: "return=representation" });
+      LS.set("s98-cm-last", String(Date.now())); LS.set("s98-cm-name", name === "Ẩn danh" ? "" : name);
+      $("#cm-body").value = ""; $("#cm-n").textContent = "0";
+      if (res && res[0]) { $("#cm-list").appendChild(cmItem(res[0])); cmN++; setCount(); }
+      say("Đã đăng. Cảm ơn bạn!");
+    } catch (err) {
+      say("Chưa gửi được, bạn thử lại sau nhé.", true);
+    } finally { btn.disabled = false; }
+  });
+}
 
 route();
 </script>
