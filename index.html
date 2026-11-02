@@ -164,6 +164,7 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
     <p class="soon" id="r-soon" hidden>Phần tiếp theo đang được viết.</p>
     <section class="cm" id="cm" hidden aria-labelledby="cm-h">
       <h2 id="cm-h">Bình luận<span id="cm-count"></span></h2>
+      <div id="disqus_thread"></div>
       <ul class="cm-list" id="cm-list"></ul>
       <p class="cm-empty" id="cm-empty" hidden>Chưa có bình luận nào. Bạn viết dòng đầu tiên nhé.</p>
       <form id="cm-form" autocomplete="off">
@@ -389,7 +390,20 @@ async function renderCommentsFor(id){
     $("#cm-empty").textContent = "Chưa tải được bình luận."; $("#cm-empty").hidden = false;
   }
 }
+/* Cách đơn giản nhất: Disqus (chỉ cần một giá trị "disqus" trong config.js; không có lượt xem) */
+const DQ = (!BE && window.STORY_BACKEND && /^[a-z0-9-]+$/i.test(STORY_BACKEND.disqus || "")) ? STORY_BACKEND.disqus : null;
+function loadDisqus(p){
+  const cfg = function(){ this.page.identifier = "s98-" + p.id; this.page.url = location.origin + location.pathname + "#" + p.id; };
+  $("#cm").hidden = false;
+  ["#cm-list", "#cm-empty", "#cm-form"].forEach(sel => { $(sel).style.display = "none"; });
+  if (window.DISQUS) { DISQUS.reset({ reload: true, config: cfg }); return; }
+  window.disqus_config = cfg;
+  const sc = document.createElement("script");
+  sc.src = `https://${DQ}.disqus.com/embed.js`; sc.async = true; sc.setAttribute("data-timestamp", +new Date());
+  document.head.appendChild(sc);
+}
 function onPartShown(p){
+  if (DQ) { loadDisqus(p); return; }
   if (!BE) return;
   showViews(p.id);
   renderCommentsFor(p.id);

@@ -1,5 +1,15 @@
 # Bật lượt xem và bình luận
 
+## Cách đơn giản nhất: Disqus (chỉ bình luận, không có lượt xem)
+
+1. Vào https://disqus.com, đăng ký, chọn "I want to install Disqus on my site" và đặt tên site.
+2. Copy phần **shortname** của site, dán vào `config.js` ở dòng `disqus: ""`, commit.
+3. Để người đọc bình luận không cần tài khoản: trong Disqus, Settings, Community, bật "Allow guests to comment".
+
+Lưu ý: Disqus là dịch vụ bên thứ ba, bản miễn phí có quảng cáo và theo dõi người đọc. Nếu bạn không muốn điều đó, dùng cách Supabase bên dưới.
+
+## Cách đầy đủ: Supabase (lượt xem và bình luận ẩn danh, dữ liệu của bạn)
+
 GitHub Pages chỉ phục vụ tệp tĩnh, nên lượt xem và bình luận cần một nơi lưu dữ liệu. Trang dùng **Supabase** (gói miễn phí đủ cho một trang truyện), gọi trực tiếp từ trình duyệt, không cần viết máy chủ. Người đọc **không cần đăng nhập**: chỉ điền tên (hoặc để trống, sẽ hiện "Ẩn danh").
 
 Khi `config.js` còn trống, hai tính năng này tự ẩn và trang vẫn đọc bình thường.

@@ -25,4 +25,4 @@ Commit và push, trang tự cập nhật sau khoảng một phút.
 
 ## Lượt xem và bình luận
 
-Xem `backend/README.md` để bật. Cấu hình ở `config.js`.
+Xem `backend/README.md` để bật (cách đơn giản nhất là Disqus, chỉ cần một giá trị). Cấu hình ở `config.js`.
