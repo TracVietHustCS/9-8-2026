@@ -10,5 +10,6 @@
 window.STORY_BACKEND = {
   disqus: "",   // Cách 1, ví dụ: "ten-site-cua-ban"
   url: "https://cjomldgkbjjbvwflxbit.supabase.co",      // Cách 2
-  key: "sb_publishable_c0f5JO1aTlEhIvdxwBXV6w_UopOrBOR"       // Cách 2: khoá công khai (publishable), KHÔNG dùng service_role hay secret
+  key: "sb_publishable_c0f5JO1aTlEhIvdxwBXV6w_UopOrBOR",       // Cách 2: khoá công khai (publishable), KHÔNG dùng service_role hay secret
+  viewsBoost: [50, 100]   // cộng thêm 50 đến 100 vào lượt xem hiển thị của mỗi phần; đặt [0, 0] để tắt
 };

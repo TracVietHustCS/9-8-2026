@@ -323,6 +323,17 @@ const api = {
   }
 };
 const nf = n => Number(n).toLocaleString("vi-VN");
+/* Cộng thêm một số cố định theo từng phần trong khoảng [min, max] vào lượt xem hiển thị (đặt viewsBoost trong config.js; [0,0] = tắt).
+   Số được suy ra từ mã phần nên ổn định giữa các lần tải trang; dữ liệu thật trong Supabase không bị đổi. */
+const VB = (window.STORY_BACKEND && Array.isArray(STORY_BACKEND.viewsBoost)) ? STORY_BACKEND.viewsBoost : [0, 0];
+function boost(id){
+  const lo = Math.floor(VB[0]), hi = Math.floor(VB[1]);
+  if (!(hi >= lo) || hi <= 0) return 0;
+  let h = 2166136261;                                        // FNV-1a rồi trộn thêm để các phần liền nhau cho số rải đều
+  for (const c of String(id)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+  h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; h >>>= 0;
+  return lo + h % (hi - lo + 1);
+}
 const VIEW_TTL = 12 * 3600 * 1000;      // mỗi trình duyệt chỉ tính 1 lượt xem cho mỗi phần trong 12 giờ
 
 async function showViews(id){
@@ -337,7 +348,8 @@ async function showViews(id){
       const r = await api.get(`/views?part_id=eq.${encodeURIComponent(id)}&select=n`);
       n = r[0] ? r[0].n : 0;
     }
-    if (location.hash.slice(1) === id && n) el.textContent = ` · ${nf(n)} lượt xem`;
+    const shown = Number(n) + boost(id);
+    if (location.hash.slice(1) === id && shown) el.textContent = ` · ${nf(shown)} lượt xem`;
   } catch (e) { /* im lặng: lỗi backend không được làm hỏng việc đọc */ }
 }
 
@@ -348,7 +360,7 @@ async function onCoverShown(){
     const m = Object.fromEntries(rows.map(r => [r.part_id, Number(r.n)]));
     let total = 0;
     document.querySelectorAll("[data-v]").forEach(el => {
-      const n = m[el.dataset.v] || 0; total += n;
+      const n = (m[el.dataset.v] || 0) + boost(el.dataset.v); total += n;
       el.textContent = n ? nf(n) + " lượt xem" : "";
     });
     $("#c-total").textContent = total ? nf(total) + " lượt xem" : "";
