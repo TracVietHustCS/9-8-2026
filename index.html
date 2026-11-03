@@ -173,47 +173,6 @@ main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
 .pm button[type=submit]{font:inherit;font-weight:600;font-size:15px;padding:10px 22px;border-radius:999px;border:1.5px solid var(--brand);background:var(--brand);color:var(--brand-ink);cursor:pointer}
 .pm button[type=submit]:disabled{opacity:.6;cursor:default}
 
-
-/* ===== ô nhạc: bìa đĩa xoay, bấm mở playlist (YouTube nhúng chính thức) ===== */
-.mp{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;font-family:var(--ui);color:#f3eadc}
-.mp[hidden]{display:none}
-.mp-card{display:flex;align-items:center;gap:12px;max-width:min(78vw,280px);padding:8px 16px 8px 8px;border-radius:999px;cursor:pointer;color:inherit;font:inherit;text-align:left;
-  background:rgba(22,17,42,.94);border:1px solid rgba(242,182,109,.45);box-shadow:0 14px 40px -12px rgba(8,6,20,.8),0 0 22px -8px rgba(242,182,109,.45);backdrop-filter:blur(8px)}
-.mp-card:hover{border-color:#f2b66d}
-.mp-disc{flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;position:relative;background:#2b2542;box-shadow:0 0 0 3px #0d0a1b,0 0 0 4px rgba(242,182,109,.5)}
-.mp-disc img{width:100%;height:100%;object-fit:cover;display:block}
-.mp-disc::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:#0d0a1b;box-shadow:0 0 0 1.5px rgba(242,182,109,.6)}
-.mp.playing .mp-disc{animation:spin 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.mp-meta{display:grid;min-width:0;line-height:1.25}
-.mp-meta b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mp-meta i{font-style:normal;font-size:12px;color:#aaa3be;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mp-panel{position:absolute;right:0;bottom:62px;width:min(92vw,380px);padding:14px;border-radius:18px;
-  background:rgba(22,17,42,.97);border:1px solid rgba(242,182,109,.4);box-shadow:0 24px 60px -16px rgba(8,6,20,.85);backdrop-filter:blur(10px)}
-.mp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.mp-head b{font-size:15px}
-.mp-x{font:inherit;font-size:20px;line-height:1;width:32px;height:32px;border-radius:50%;border:1px solid rgba(243,234,220,.2);background:transparent;color:inherit;cursor:pointer}
-.mp-x:hover{border-color:#f2b66d}
-.mp-video{aspect-ratio:16/9;min-height:200px;background:#000;border-radius:10px;overflow:hidden}
-.mp-video iframe{width:100%;height:100%;display:block;border:0}
-.mp-ctl{display:flex;align-items:center;gap:8px;margin:10px 0 8px}
-.mp-ctl button{font:inherit;font-size:16px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(243,234,220,.22);background:transparent;color:inherit;cursor:pointer}
-.mp-ctl button:hover{border-color:#f2b66d}
-.mp-ctl .mp-pp{background:#f2b66d;border-color:#f2b66d;color:#1c1226;font-weight:700}
-.mp-ctl input[type=range]{flex:1;min-width:0;accent-color:#f2b66d}
-.mp-list{list-style:none;margin:0;padding:0;max-height:min(28vh,190px);overflow:auto;display:grid;gap:4px}
-.mp-list button{display:flex;align-items:center;gap:10px;width:100%;padding:6px 8px;border-radius:10px;border:1px solid transparent;background:transparent;color:inherit;font:inherit;font-size:13.5px;text-align:left;cursor:pointer}
-.mp-list button:hover{background:rgba(242,182,109,.1)}
-.mp-list li[aria-current="true"] button{border-color:rgba(242,182,109,.55);background:rgba(242,182,109,.12)}
-.mp-list img{flex:none;width:40px;height:30px;object-fit:cover;border-radius:5px}
-.mp-list .nm{min-width:0;display:grid;line-height:1.25}
-.mp-list .nm span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mp-list .nm small{color:#aaa3be;font-size:12px}
-.mp-note{margin:8px 2px 0;font-size:12px;color:#aaa3be}
-.mp-note.err{color:#f08aa6}
-@media (prefers-reduced-motion:reduce){.mp.playing .mp-disc{animation:none}}
-@media (max-width:420px){.mp{right:10px}.mp-card{max-width:62vw}}
-
 /* reading */
 .crumb{font-size:14px;color:var(--muted);margin:0 0 10px}
 .crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
@@ -351,8 +310,6 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
   </article>
 </main>
 
-<div class="mp" id="mp" hidden></div>
-
 <footer>
   <span id="f-upd"></span>
   <span>© <span id="yr"></span> Trác Việt</span>
@@ -360,7 +317,6 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
 
 <script src="parts.js"></script>
 <script src="config.js"></script>
-<script src="playlist.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -691,120 +647,6 @@ if (BE) {
     if (ok === true) { $("#pm-cover").appendChild(buildPM()); $("#pm-reader").appendChild(buildPM()); }
   }).catch(() => {});
 }
-
-/* ===== Nhạc nền: trình phát YouTube chính thức, FULL bài. Chỉ tải YouTube khi người đọc bấm mở ===== */
-(function(){
-  const PL = window.PLAYLIST;
-  const tracks = (PL && Array.isArray(PL.tracks) ? PL.tracks : []).filter(t => t && /^[A-Za-z0-9_-]{11}$/.test(t.id || ""));
-  const root = document.getElementById("mp");
-  if (!root || !tracks.length) return;
-  const thumb = (id, q) => `https://i.ytimg.com/vi/${id}/${q || "mqdefault"}.jpg`;
-  const coverOf = t => (PL.cover || thumb(t.id));
-  let cur = Math.min(Math.max(+LS.get("s98-mp-i") || 0, 0), tracks.length - 1);
-  let vol = LS.get("s98-mp-v") == null ? 70 : Math.min(100, Math.max(0, +LS.get("s98-mp-v") || 0));
-  let player = null, ready = false, wantPlay = false, playing = false, isOpen = false, apiP = null, skipped = 0;
-  const titleOf = t => t.title || t._yt || "Bài " + (tracks.indexOf(t) + 1);
-
-  root.innerHTML = `
-    <button class="mp-card" type="button" aria-expanded="false" aria-controls="mp-panel" aria-label="Mở playlist nhạc">
-      <span class="mp-disc"><img alt="" src="${esc(coverOf(tracks[cur]))}"></span>
-      <span class="mp-meta"><b class="mp-t"></b><i class="mp-s"></i></span>
-    </button>
-    <section class="mp-panel" id="mp-panel" hidden aria-label="Playlist nhạc">
-      <div class="mp-head"><b>${esc(PL.title || "Nhạc nền")}</b><button class="mp-x" type="button" aria-label="Đóng và dừng nhạc">×</button></div>
-      <div class="mp-video"><div id="mp-yt"></div></div>
-      <div class="mp-ctl">
-        <button type="button" class="mp-prev" aria-label="Bài trước">⏮</button>
-        <button type="button" class="mp-pp" aria-label="Phát">▶</button>
-        <button type="button" class="mp-next" aria-label="Bài sau">⏭</button>
-        <input type="range" class="mp-vol" min="0" max="100" value="${vol}" aria-label="Âm lượng">
-      </div>
-      <ol class="mp-list"></ol>
-      <p class="mp-note" role="status" aria-live="polite">Đóng bảng sẽ dừng nhạc (YouTube yêu cầu khung phát phải hiện ra).</p>
-    </section>`;
-  root.hidden = false;
-  const $r = s => root.querySelector(s);
-  const card = $r(".mp-card"), panel = $r(".mp-panel"), pp = $r(".mp-pp"), note = $r(".mp-note"), list = $r(".mp-list");
-
-  function paintList(){
-    list.innerHTML = tracks.map((t, i) => `<li${i === cur ? ' aria-current="true"' : ""}><button type="button" data-i="${i}"><img alt="" loading="lazy" src="${esc(thumb(t.id, "default"))}"><span class="nm"><span>${esc(titleOf(t))}</span>${t.artist ? `<small>${esc(t.artist)}</small>` : ""}</span></button></li>`).join("");
-  }
-  function paintCard(){
-    const t = tracks[cur];
-    $r(".mp-t").textContent = titleOf(t);
-    $r(".mp-s").textContent = playing ? "Đang phát" : (t.artist || "Bấm để mở playlist");
-    $r(".mp-disc img").src = coverOf(t);
-    root.classList.toggle("playing", playing);
-    pp.textContent = playing ? "⏸" : "▶"; pp.setAttribute("aria-label", playing ? "Tạm dừng" : "Phát");
-  }
-  let noteUntil = 0;
-  function say(t, err){ note.textContent = t; note.className = "mp-note" + (err ? " err" : ""); noteUntil = err ? Date.now() + 7000 : 0; }
-
-  function loadApi(){
-    if (window.YT && window.YT.Player) return Promise.resolve();
-    if (apiP) return apiP;
-    apiP = new Promise((res, rej) => {
-      window.onYouTubeIframeAPIReady = () => res();
-      const sc = document.createElement("script"); sc.src = "https://www.youtube.com/iframe_api"; sc.async = true;
-      sc.onerror = () => { apiP = null; rej(new Error("api")); };
-      document.head.appendChild(sc);
-    });
-    return apiP;
-  }
-  function mount(){
-    return loadApi().then(() => new Promise(res => {
-      player = new YT.Player("mp-yt", {
-        host: "https://www.youtube-nocookie.com", width: "100%", height: "100%", videoId: tracks[cur].id,
-        playerVars: { playsinline: 1, rel: 0, modestbranding: 1, origin: location.origin },
-        events: {
-          onReady: () => { ready = true; try { player.setVolume(vol); } catch (e) {} if (wantPlay) player.playVideo(); res(); },
-          onStateChange: e => {
-            const S = YT.PlayerState;
-            if (e.data === S.PLAYING){
-              playing = true; skipped = 0;
-              try { const t = tracks[cur], d = player.getVideoData(); if (!t.title && d && d.title){ t._yt = d.title; paintList(); } } catch (x) {}
-              if (Date.now() > noteUntil) say("Đóng bảng sẽ dừng nhạc (YouTube yêu cầu khung phát phải hiện ra).");   // giữ thông báo lỗi vài giây
-            } else if (e.data === S.PAUSED){ playing = false; }
-            else if (e.data === S.ENDED){ playing = false; go(cur + 1, true); return; }
-            paintCard();
-          },
-          onError: () => {                       // bài không cho nhúng, đã bị gỡ hoặc lỗi: bỏ qua sang bài sau
-            playing = false; skipped++;
-            say(`Bài "${titleOf(tracks[cur])}" không phát được trong trang, đã chuyển bài.`, true);
-            if (skipped < tracks.length) go(cur + 1, true); else say("Không có bài nào phát được trong trang. Bạn kiểm tra lại các bài trong playlist.js nhé.", true);
-            paintCard();
-          }
-        }
-      });
-    })).catch(() => { say("Chưa tải được trình phát YouTube, bạn thử lại sau nhé.", true); });
-  }
-  function go(i, play){
-    cur = ((i % tracks.length) + tracks.length) % tracks.length; LS.set("s98-mp-i", String(cur));
-    paintList(); paintCard();
-    if (ready){ play ? player.loadVideoById(tracks[cur].id) : player.cueVideoById(tracks[cur].id); }
-    else wantPlay = !!play;
-  }
-  function toggleOpen(open){
-    isOpen = open; panel.hidden = !open; card.setAttribute("aria-expanded", String(open));
-    if (open){
-      if (!player && !apiP){ wantPlay = true; mount(); }          // lần đầu mở: tải YouTube và phát luôn
-    } else {                                                     // đóng bảng = dừng nhạc (khung phát phải hiện khi đang phát)
-      wantPlay = false; if (ready && player){ try { player.pauseVideo(); } catch (e) {} } playing = false; paintCard();
-    }
-  }
-  card.addEventListener("click", () => toggleOpen(!isOpen));
-  $r(".mp-x").addEventListener("click", () => { toggleOpen(false); card.focus(); });
-  pp.addEventListener("click", () => {
-    if (!ready) { wantPlay = true; return; }
-    playing ? player.pauseVideo() : player.playVideo();
-  });
-  $r(".mp-prev").addEventListener("click", () => go(cur - 1, true));
-  $r(".mp-next").addEventListener("click", () => go(cur + 1, true));
-  list.addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) go(+b.dataset.i, true); });
-  $r(".mp-vol").addEventListener("input", e => { vol = +e.target.value; LS.set("s98-mp-v", String(vol)); if (ready) try { player.setVolume(vol); } catch (x) {} });
-  addEventListener("keydown", e => { if (e.key === "Escape" && isOpen) toggleOpen(false); });
-  paintList(); paintCard();
-})();
 
 route();
 </script>
