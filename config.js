@@ -9,6 +9,6 @@
    Để trống cả hai = bình luận và lượt xem tự ẩn, trang vẫn đọc bình thường. */
 window.STORY_BACKEND = {
   disqus: "",   // Cách 1, ví dụ: "ten-site-cua-ban"
-  url: "",      // Cách 2, ví dụ: "https://abcdxyz.supabase.co"
-  key: ""       // Cách 2: khoá công khai (anon hoặc publishable), KHÔNG dùng service_role
+  url: "https://cjomldgkbjjbvwflxbit.supabase.co",      // Cách 2
+  key: "sb_publishable_c0f5JO1aTlEhIvdxwBXV6w_UopOrBOR"       // Cách 2: khoá công khai (publishable), KHÔNG dùng service_role hay secret
 };
