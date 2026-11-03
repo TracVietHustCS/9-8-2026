@@ -88,12 +88,14 @@ main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
   box-shadow:0 34px 90px -34px rgba(10,8,26,.75), inset 0 1px 0 rgba(255,255,255,.05);
 }
 .cover > *{position:relative;z-index:2}
-.cover > .rain,.cover > .door{position:absolute;pointer-events:none}
+.cover > .rain{position:absolute;pointer-events:none}
 .cover > .rain{inset:0;z-index:0;overflow:hidden}
 .rain i{position:absolute;top:-30%;width:1px;background:linear-gradient(to bottom,transparent,rgba(190,208,255,.55));
   transform:rotate(14deg);animation:fall linear infinite}
 @keyframes fall{from{transform:translate3d(0,0,0) rotate(14deg)}to{transform:translate3d(-40px,150vh,0) rotate(14deg)}}
-.cover > .door{z-index:1;right:clamp(20px,5%,60px);bottom:44px;width:clamp(104px,16vw,140px);height:auto;opacity:.95}
+.cover .tocwrap{position:relative}
+.cover .tocwrap .toc{position:relative;z-index:1}
+.cover .door{position:absolute;pointer-events:none;z-index:0;right:clamp(0px,2%,24px);bottom:0;width:clamp(104px,16vw,140px);height:auto;opacity:.95}
 .cover .eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 26px;font-size:12.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 .cover .eyebrow::before{content:"";width:46px;height:1px;background:var(--brand)}
 .cover h1{font-family:var(--noble);font-weight:500;font-size:clamp(66px,16vw,152px);line-height:.92;letter-spacing:.02em;margin:0 0 22px;
@@ -117,7 +119,7 @@ main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
 .cover .badge{background:rgba(242,182,109,.14);color:var(--brand)}
 @media (max-width:640px){
   .page.cover{min-height:0;padding-top:64px}
-  .cover > .door{opacity:.28;width:58vw;right:-8px;bottom:60px}
+  .cover .door{opacity:.28;width:58vw;right:-8px;bottom:0}
   .cover .toc{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){ .cover > .rain{display:none} }
@@ -153,6 +155,23 @@ main{max-width:860px;margin:0 auto;padding:28px 20px 72px}
 }
 @media (max-width:420px){ .cover > .inscr{display:none} .cover .eyebrow{letter-spacing:.12em;font-size:10.5px;gap:10px} .cover .eyebrow::before{width:24px} }
 @media (prefers-reduced-motion:reduce){ .cover > .petals{display:none} }
+
+
+/* tin nhắn riêng (chỉ chủ trang đọc được; tự hiện khi backend đã bật hộp thư) */
+.pm{margin-top:30px;border:1px dashed var(--line);border-radius:12px}
+.pm summary{cursor:pointer;padding:14px 18px;font-family:var(--ui);font-weight:600;font-size:15px;list-style:none}
+.pm summary::-webkit-details-marker{display:none}
+.pm[open] summary{border-bottom:1px dashed var(--line)}
+.pm form{display:grid;gap:10px;padding:16px 18px}
+.pm input[type=text],.pm textarea{font:inherit;font-family:var(--ui);font-size:15.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.cover .pm input[type=text],.cover .pm textarea{background:rgba(255,255,255,.05)}
+.pm textarea{min-height:110px;resize:vertical}
+.pm .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pm .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+.pm .note,.pm .msg,.pm .cnt{font-family:var(--ui);font-size:13.5px;color:var(--muted);margin:0}
+.pm .msg.err{color:var(--brand)}
+.pm button[type=submit]{font:inherit;font-weight:600;font-size:15px;padding:10px 22px;border-radius:999px;border:1.5px solid var(--brand);background:var(--brand);color:var(--brand-ink);cursor:pointer}
+.pm button[type=submit]:disabled{opacity:.6;cursor:default}
 
 /* reading */
 .crumb{font-size:14px;color:var(--muted);margin:0 0 10px}
@@ -229,7 +248,18 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
 <main>
   <article class="page cover" id="cover" hidden>
     <div class="rain" id="rain" aria-hidden="true"></div>
-    <svg class="door" viewBox="0 0 200 340" aria-hidden="true" focusable="false">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+    <div class="inscr" aria-hidden="true"><span class="han">絕情傳</span><span class="seal">情</span></div>
+    <p class="eyebrow">Truyện dài · cập nhật từng phần</p>
+    <h1 id="c-title"></h1>
+    <p class="tag" id="c-tag"></p>
+    <p class="flourish" aria-hidden="true">❦</p>
+    <p class="tot" id="c-total" aria-live="polite"></p>
+    <div class="btns" id="c-btns"></div>
+    <h2>Mục lục</h2>
+    <div class="tocwrap">
+    <ol class="toc" id="c-toc"></ol>
+      <svg class="door" viewBox="0 0 200 340" aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2b0"/><stop offset="1" stop-color="#f2a64d"/></linearGradient>
         <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b66d" stop-opacity=".55"/><stop offset="1" stop-color="#f2b66d" stop-opacity="0"/></linearGradient>
@@ -245,16 +275,8 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
       <polygon points="60,296 60,94 72,88 72,300" fill="#0d0a1b"/>
       <rect x="40" y="300" width="120" height="6" rx="3" fill="#2b2542"/>
     </svg>
-    <div class="petals" id="petals" aria-hidden="true"></div>
-    <div class="inscr" aria-hidden="true"><span class="han">絕情傳</span><span class="seal">情</span></div>
-    <p class="eyebrow">Truyện dài · cập nhật từng phần</p>
-    <h1 id="c-title"></h1>
-    <p class="tag" id="c-tag"></p>
-    <p class="flourish" aria-hidden="true">❦</p>
-    <p class="tot" id="c-total" aria-live="polite"></p>
-    <div class="btns" id="c-btns"></div>
-    <h2>Mục lục</h2>
-    <ol class="toc" id="c-toc"></ol>
+    </div>
+    <div id="pm-cover"></div>
   </article>
 
   <article class="page rd" id="reader" hidden>
@@ -280,6 +302,7 @@ footer{max-width:860px;margin:0 auto;padding:0 20px 44px;color:var(--muted);font
         <p class="msg" id="cm-msg" role="status" aria-live="polite"></p>
       </form>
     </section>
+    <div id="pm-reader"></div>
     <div class="end">
       <div class="pn" id="r-pn"></div>
       <a class="toc-link" href="#">Về mục lục</a>
@@ -450,7 +473,8 @@ const api = {
   async post(path, body, extra){
     const r = await fetch(this.base + path, { method: "POST", headers: this.headers(extra), body: JSON.stringify(body) });
     if (!r.ok) throw new Error("POST " + r.status);
-    return r.status === 204 ? null : r.json();
+    const t = await r.text();                       // 201/204 không có nội dung khi không xin trả về bản ghi
+    return t ? JSON.parse(t) : null;
   }
 };
 const nf = n => Number(n).toLocaleString("vi-VN");
@@ -576,6 +600,52 @@ if (BE) {
       say("Chưa gửi được, bạn thử lại sau nhé.", true);
     } finally { btn.disabled = false; }
   });
+}
+
+/* ===== Tin nhắn riêng: chỉ ghi vào bảng private_messages, người lạ không đọc lại được ===== */
+function pmPart(){ const h = location.hash.slice(1); return /^[a-z0-9-]{1,40}$/.test(h) ? h : null; }
+function buildPM(){
+  const d = document.createElement("details"); d.className = "pm";
+  d.innerHTML = `<summary>💌 Nhắn riêng cho mình</summary>
+  <form autocomplete="off">
+    <p class="note">Chỉ mình đọc được, không hiện công khai. Đừng gửi mật khẩu hay thông tin nhạy cảm.</p>
+    <label class="hp" aria-hidden="true">Đừng điền ô này <input type="text" class="pm-hp" tabindex="-1" autocomplete="off"></label>
+    <input type="text" class="pm-name" maxlength="40" placeholder="Tên của bạn (không bắt buộc)" aria-label="Tên của bạn">
+    <input type="text" class="pm-contact" maxlength="120" placeholder="Cách liên hệ nếu muốn mình trả lời (không bắt buộc)" aria-label="Cách liên hệ">
+    <textarea class="pm-body" maxlength="2000" placeholder="Viết lời nhắn..." aria-label="Lời nhắn" required></textarea>
+    <div class="row"><span class="cnt"><span class="pm-n">0</span>/2000</span><button type="submit">Gửi riêng</button></div>
+    <p class="msg" role="status" aria-live="polite"></p>
+  </form>`;
+  const f = d.querySelector("form"), body = d.querySelector(".pm-body"), msg = d.querySelector(".msg"), btn = d.querySelector("button");
+  d.querySelector(".pm-name").value = LS.get("s98-cm-name") || "";
+  body.addEventListener("input", () => { d.querySelector(".pm-n").textContent = body.value.length; });
+  const say = (t, err) => { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); };
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const text = (body.value || "").trim();
+    const name = (d.querySelector(".pm-name").value || "").trim().slice(0, 40);
+    const contact = (d.querySelector(".pm-contact").value || "").trim().slice(0, 120);
+    if (d.querySelector(".pm-hp").value) { say("Đã gửi. Cảm ơn bạn!"); body.value = ""; return; }   // ô bẫy bot
+    if (!text) return say("Bạn chưa viết gì cả.", true);
+    if (text.length > 2000) return say("Lời nhắn dài quá (tối đa 2000 ký tự).", true);
+    if (Date.now() - (+LS.get("s98-pm-last") || 0) < 30000) return say("Chờ ít giây rồi gửi tiếp nhé.", true);
+    btn.disabled = true; say("Đang gửi…");
+    try {
+      // không xin trả về bản ghi (người lạ không có quyền đọc): để mặc định return=minimal
+      await api.post("/private_messages", { part_id: pmPart(), name: name || null, contact: contact || null, body: text });
+      LS.set("s98-pm-last", String(Date.now()));
+      body.value = ""; d.querySelector(".pm-n").textContent = "0";
+      say("Đã gửi riêng cho mình. Cảm ơn bạn!");
+    } catch (err) { say("Chưa gửi được, bạn thử lại sau nhé.", true); }
+    finally { btn.disabled = false; }
+  });
+  return d;
+}
+if (BE) {
+  // hàm inbox_ready chỉ tồn tại sau khi chạy backend/private-messages.sql: chưa chạy thì ô nhắn riêng không hiện
+  api.post("/rpc/inbox_ready", {}).then(ok => {
+    if (ok === true) { $("#pm-cover").appendChild(buildPM()); $("#pm-reader").appendChild(buildPM()); }
+  }).catch(() => {});
 }
 
 route();

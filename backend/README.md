@@ -39,3 +39,14 @@ Vào **Table Editor, comments**: để ẩn một bình luận, đổi `hidden` 
 - Chống spam ở đây là cơ bản. Nếu bị spam nhiều, thêm CAPTCHA (ví dụ Cloudflare Turnstile) hoặc chuyển sang duyệt trước khi hiển thị (đổi mặc định `hidden` thành `true` và tự duyệt trong Table Editor).
 - Supabase ghi nhật ký yêu cầu ở phía họ (có thể gồm địa chỉ IP); bảng của trang này không lưu IP. Nếu có người đọc ở khu vực có quy định riêng về dữ liệu, hãy xem lại chính sách của bạn.
 - Gói Free của Supabase có thể tạm dừng dự án nếu không có hoạt động trong thời gian dài; vào bảng điều khiển để bật lại.
+
+
+## Tin nhắn riêng (chỉ bạn đọc được)
+
+Người đọc bấm "Nhắn riêng cho mình" (ở mục lục và cuối mỗi phần), viết lời nhắn, có thể để tên và cách liên hệ. Lời nhắn **không hiện công khai**.
+
+1. Chạy `backend/private-messages.sql` trong SQL Editor của Supabase (một lần). Khi đó ô nhắn riêng tự hiện trên trang; chưa chạy thì người đọc không thấy ô này.
+2. Đọc tin: **Table Editor, bảng `private_messages`**, sắp theo `created_at` mới nhất. Sau khi đọc có thể đổi `read` thành `true` để tự nhớ.
+3. Người lạ chỉ được thêm tin, không đọc, sửa hay xoá được bất kỳ tin nào (kể cả tin của chính họ vừa gửi).
+
+Lưu ý: không có thông báo tự động khi có tin mới (cần bạn vào xem, hoặc cấu hình thêm Database Webhook của Supabase). Đừng hứa với người đọc là sẽ trả lời, và nhắc họ không gửi thông tin nhạy cảm. Chống spam ở đây cũng cơ bản như phần bình luận.
